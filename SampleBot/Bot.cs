@@ -1,10 +1,11 @@
-﻿using Contexts;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using SampleBot.Interfaces;
 using SampleBot.Models;
 using SampleBot.Services.Interfaces;
-using System.Linq;
+using System;
 using System.Threading.Tasks;
+using Trello;
 
 namespace SampleBot
 {
@@ -12,25 +13,35 @@ namespace SampleBot
     {
         private Settings _settings { get; set; }
         private IConfiguration _configuration { get; set; }
-        public IBotService _botService { get; set; }
-        public SampleContext conexaoBancoDeDados;
-        public Bot(IConfiguration configuration, IBotService botService)
+        private IBotService _botService { get; set; }
+        private ITrelloOptions _trelloOptions;
+        private TrelloConnector _trelloConnector { get; set; }
+        public Bot(IConfiguration configuration, IBotService botService, IOptions<TrelloOptions> trelloOptions)
         {
             _configuration = configuration;
             _botService = botService;
+            _trelloOptions = trelloOptions.Value;
         }
 
         public void Configure()
         {
             _settings = _configuration.GetSection("Settings").Get<Settings>();
+            _trelloConnector = new TrelloConnector(_trelloOptions);
         }
 
         public async Task RunAsync()
         {
             int fromPhase = _settings.InitialPhase;
             int nextPhase = _settings.NextPhase;
-            var documents = await _botService.GetDocumentsByPhase(fromPhase);
-            await _botService.MoveToNextPhase(documents, nextPhase);
+            try
+            {
+                var documents = await _botService.GetDocumentsByPhase(fromPhase);
+                await _botService.MoveToNextPhase(documents, nextPhase);
+            }
+            catch(Exception exception)
+            {
+                await _trelloConnector.CreateCard("ChangePhaseBot", _trelloOptions.TrelloListId, exception.Message, _trelloOptions.TrelloLabelsId);
+            }
         }
 
         public bool Validate()

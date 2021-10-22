@@ -14,16 +14,14 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="5.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BotBase\BotBase.csproj" />
     <ProjectReference Include="..\Contexts\Contexts.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <ProjectReference Include="..\TrelloBot\Trello.csproj" />
   </ItemGroup>
 
 </Project>

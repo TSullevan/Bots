@@ -11,6 +11,7 @@ using SampleBot.Services;
 using SampleBot.Services.Interfaces;
 using System;
 using System.IO;
+using Trello;
 
 namespace SampleBot
 {
@@ -37,27 +38,32 @@ namespace SampleBot
             ServiceCollection services = new ServiceCollection();
 
             services.AddSingleton(_configuration);
+            services.AddSingleton<ITrelloConnector, TrelloConnector>();
 
-            #region DI - Contexts and Procs
+            #region Configurations
+            services.Configure<ITrelloOptions>(_configuration.GetSection("TrelloSettings"));
+            #endregion
+
+            #region Contexts and Procs
             services.AddDbContext<SampleContext>(config =>
             {
                 config.UseSqlServer(_configuration.GetConnectionString("dbSample"));
             });
             #endregion
 
-            #region DI - Connections
+            #region Connections
             services.AddTransient<ISampleConnection>(db => new SampleConnection(_configuration.GetConnectionString("dbSample")));
             #endregion
 
-            #region DI - Bot
+            #region Bot
             services.AddScoped<IBot, Bot>();
             #endregion
 
-            #region DI - Services
+            #region Services
             services.AddScoped<IBotService, BotService>();
             #endregion
 
-            #region DI - Repositories
+            #region Repositories
             services.AddScoped<IDocumentoRepository, DocumentoRepository>();
             #endregion
 
