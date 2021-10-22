@@ -6,6 +6,7 @@ using SampleBot.Services.Interfaces;
 using System;
 using System.Threading.Tasks;
 using Trello;
+using Xsys.Discord;
 
 namespace SampleBot
 {
@@ -37,6 +38,13 @@ namespace SampleBot
             {
                 var documents = await _botService.GetDocumentsByPhase(fromPhase);
                 await _botService.MoveToNextPhase(documents, nextPhase);
+                var discord = new DiscordConnector()
+                {
+                    username = "ChangePhaseBot",
+                    message = $"Testando 1,2,3..."
+                };
+
+                await discord.SendDiscordMessage();
             }
             catch(Exception exception)
             {

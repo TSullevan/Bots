@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contexts", "Contexts\Contex
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BotBase", "BotBase\BotBase.csproj", "{C1F2718F-E429-4325-AA32-0287CF37A34A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trello", "TrelloBot\Trello.csproj", "{7C066C2F-0731-45D7-B632-6F04F8BE5276}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Trello", "TrelloBot\Trello.csproj", "{7C066C2F-0731-45D7-B632-6F04F8BE5276}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Discord", "Discord\Discord.csproj", "{E47D5AF8-8603-4827-96F8-9E8B71952518}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{7C066C2F-0731-45D7-B632-6F04F8BE5276}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C066C2F-0731-45D7-B632-6F04F8BE5276}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C066C2F-0731-45D7-B632-6F04F8BE5276}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E47D5AF8-8603-4827-96F8-9E8B71952518}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E47D5AF8-8603-4827-96F8-9E8B71952518}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E47D5AF8-8603-4827-96F8-9E8B71952518}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E47D5AF8-8603-4827-96F8-9E8B71952518}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

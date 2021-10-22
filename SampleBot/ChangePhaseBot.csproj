@@ -20,6 +20,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BotBase\BotBase.csproj" />
     <ProjectReference Include="..\Contexts\Contexts.csproj" />
+    <ProjectReference Include="..\Discord\Discord.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
     <ProjectReference Include="..\TrelloBot\Trello.csproj" />
   </ItemGroup>
